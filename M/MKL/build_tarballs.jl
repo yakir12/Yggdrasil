@@ -12,6 +12,8 @@ sources = [
                   "78fbe6dfec291ba3332862bface5814cb0f128564bd4b99da53434ec6dd162a7"; unpack_target = "mkl-i686-w64-mingw32"),
     ArchiveSource("https://anaconda.org/anaconda/mkl/2020.0/download/win-64/mkl-2020.0-166.tar.bz2",
                   "c44096070fc5a5df0548c1168bcc464303d2757502ab2332f2184842d8eb7404"; unpack_target = "mkl-x86_64-w64-mingw32"),
+    ArchiveSource("https://globalcdn.nuget.org/packages/intelmkl.devel.win-x64.2020.0.166.nupkg",
+                  "538fa38e1f910f6950b4ea98c4b28ab2aa60e6aaace0b971eba400f1d289a820"; unpack_target = "mkl-extras-x86_w64-mingw32"),
 ]
 
 # Bash recipe for building across all platforms
@@ -20,6 +22,7 @@ cd ${WORKSPACE}/srcdir/mkl-${target}
 if [[ ${target} == *mingw* ]]; then
     cp -r Library/bin/* ${libdir}
     install_license info/*.txt
+    false
 else
     cp -r lib/* ${libdir}
     install_license info/licenses/*.txt
@@ -37,6 +40,7 @@ platforms = [
 products = [
     LibraryProduct(["libmkl_core", "mkl_core"], :libmkl_core),
     LibraryProduct(["libmkl_rt", "mkl_rt"], :libmkl_rt),
+    #LibraryProduct(["libmkl_intel_lp64", "mkl_intel_lp64"], :libmkl_intel_lp64),
 ]
 
 # Dependencies that must be installed before this package can be built
