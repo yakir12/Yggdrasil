@@ -38,4 +38,7 @@ dependencies = [
     Dependency("GMP_jll", v"6.1.2"),
 ]
 
-build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies; preferred_gcc_version=v"5")
+# Note: we explicitly lie about this because we don't have the new
+# versioning APIs worked out in BB yet.
+version = v"4.1.1"
+build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies; preferred_gcc_version=v"5"; julia_compat="1.6")
