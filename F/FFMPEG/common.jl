@@ -106,6 +106,8 @@ pkg-config --list-all
   --enable-parsers     \
   --enable-openssl     \
   --disable-schannel   \
+  --enable-omx         \
+  --enable-omx-rpi     \
   --extra-cflags="-I${prefix}/include" \
   --extra-ldflags="-L${libdir}" ${CUDA_ARGS} \
   "${EXTRA_FLAGS[@]}"
